@@ -18,7 +18,7 @@ soup = BeautifulSoup(resp.text)
 lista = soup.find(class_='trans clickable')
 sino = lista.find('li')
 
-
+#Esto es una prueba
 def Sinonimos():
     Text = sino.next_element
     sincoma = re.sub(",","",Text)
