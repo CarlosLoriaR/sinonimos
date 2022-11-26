@@ -18,8 +18,13 @@ ventana.title("Syno - Juego de Sinonimos")
 #Esto es una prueba
 def Sinonimos():
     url = 'https://www.wordreference.com/sinonimos/'
-    palabra = random.sample(palabras,6)
-    for i in range(0,8):
+    #SE ELIGEN 6 ELEMENTOS DEL ARREGLO DE PALABRAS Y SE GUARDAN EN UN ARREGLO LLAMADO PALABRA.
+    palabra = random.sample(palabras,6) #PALABRA ES UN ARREGLO POR LO QUE SE NECESITA UN CICLO PARA BUSCAR LAS PALABRAS EN LA WEB
+    sinonimo = []
+    relaciones = []
+    #CICLO DE i DESDE QUE ES 0 HASTA QUE ES 6
+    for i in range(0,6):
+        #SE BUSCA EN INTERNET LA PALABRA DEPENDIENDO DEL INDICE DEL ARREGLO
         buscar = url+palabra[i]
         resp = requests.get(buscar)
         soup = BeautifulSoup(resp.text)
@@ -29,7 +34,22 @@ def Sinonimos():
         Text = sino.next_element
         sincoma = re.sub(",","",Text)
         x = sincoma.split()
-        print(palabra[i]+"\t\t"+x[0])
+        #SE ELIJE AL AZAR UNO DE LOS SINONIMOS DE LA PALABRA QUE APAREZEN EN LA PAGINA WEB
+        eleccion = random.choice(x)
+        #SE AGREGAR LA PALABRA QUE SE BUSCO Y EL SINONIMO ELEJIDO Y SE GUARDA COMO UN ELEMENTO DE UN ARREGLOO
+        relaciones.append([palabra[i], eleccion])
+        #EL SINONIMO SELECCIONADO DE CADA PALABRA SE AGREGAR A UN ARREGLO DE SINONIMOS
+        sinonimo.append(eleccion)
+    #SE TOMAN TODOS LOS SINONIMOS DEL ARREGLOO SINONIMO Y SE REVUELVEN DE MANERA RANDOM
+    sinonimor = random.sample(sinonimo,6)
+    #VARIABLE PARA QUE APAREZCA EL NUMERO A LADO DE LOS SINONIMOS
+    j=1
+    #PRUEBA PARA QUE VEA COMO QUEDO EL ARREGLOO DE RELACIONES. TAL VEZ PUEDA SERVIR PARA VERIFICAR SI LAS RESPUESTAS FUERON CORRECTAS
+    print(relaciones)
+    for i in range(0,6):
+        #SE IMPRIME LAS PALABRAS Y SINONIMOS. LOS SINONIMOS YA SE ENCUENTRAN EN DESORDEN
+        print(palabra[i]+"\t\t",j,sinonimor[i])
+        j=j+1
 
 # DISEÑO
 h1 = Label(ventana, text="Bienvenido a Syno\n ¿Listo para poner a prueba tus habilidades de vocabulario?")
