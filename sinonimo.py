@@ -4,26 +4,32 @@ from bs4 import BeautifulSoup
 import sys
 import tkinter as tk
 import re
+import random
+#INICIALIZACIÓN
+palabras = ['definicion', 'trabajo', 'desarrollo', 'concepto', 'respuesta', 'opcion', 'problema', 'apoyo']
+
 
 # VENTANA
 ventana = Tk()
 ventana.geometry("800x600")
 ventana.title("Syno - Juego de Sinonimos")
 
-url = 'https://www.wordreference.com/sinonimos/'
-buscar = url+"Amor"
-resp = requests.get(buscar)
-soup = BeautifulSoup(resp.text)
-
-lista = soup.find(class_='trans clickable')
-sino = lista.find('li')
 
 #Esto es una prueba
 def Sinonimos():
-    Text = sino.next_element
-    sincoma = re.sub(",","",Text)
-    x = sincoma.split()
-    print(x[0]+"\n"+x[1])
+    url = 'https://www.wordreference.com/sinonimos/'
+    palabra = random.sample(palabras,6)
+    for i in range(0,8):
+        buscar = url+palabra[i]
+        resp = requests.get(buscar)
+        soup = BeautifulSoup(resp.text)
+
+        lista = soup.find(class_='trans clickable')
+        sino = lista.find('li')
+        Text = sino.next_element
+        sincoma = re.sub(",","",Text)
+        x = sincoma.split()
+        print(palabra[i]+"\t\t"+x[0])
 
 # DISEÑO
 h1 = Label(ventana, text="Bienvenido a Syno\n ¿Listo para poner a prueba tus habilidades de vocabulario?")
