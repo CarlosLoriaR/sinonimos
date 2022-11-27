@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import ttk
 import requests
 from bs4 import BeautifulSoup
 import sys
@@ -14,46 +15,61 @@ ventana = Tk()
 ventana.geometry("800x600")
 ventana.title("Syno - Juego de Sinonimos")
 #COLUMNA IZQUIERDA
-lbl1 = Entry(ventana)
-lbl1.place(x=200,y=100,width=100,height=30)
+anc = NW
+w=150
+h=30
+fet=('Arial',16)
+lbl1 = Label(ventana,font=fet,anchor=anc)
+lbl1.place(x=200,y=100,width=w,height=h)
 
-lbl2 = Entry(ventana)
-lbl2.place(x=200,y=150,width=100,height=30)
+lbl2 = Label(ventana, font=fet,anchor=anc)
+lbl2.place(x=200,y=150,width=w,height=h)
 
-lbl3 = Entry(ventana)
-lbl3.place(x=200,y=200,width=100,height=30)
+lbl3 = Label(ventana, font=fet,anchor=anc)
+lbl3.place(x=200,y=200,width=w,height=h)
 
-lbl4 = Entry(ventana)
-lbl4.place(x=200,y=250,width=100,height=30)
+lbl4 = Label(ventana, font=fet,anchor=anc)
+lbl4.place(x=200,y=250,width=w,height=h)
 
-lbl5 = Entry(ventana)
-lbl5.place(x=200,y=300,width=100,height=30)
+lbl5 = Label(ventana, font=fet,anchor=anc)
+lbl5.place(x=200,y=300,width=w,height=h)
 
-lbl6 = Entry(ventana)
-lbl6.place(x=200,y=350,width=100,height=30)
+lbl6 = Label(ventana, font=fet,anchor=anc)
+lbl6.place(x=200,y=350,width=w,height=h)
 
 #COLUMNA DERECHA
-lbl7 = Entry(ventana)
-lbl7.place(x=500,y=100,width=100,height=30)
+wn = 50
+fnum =('Arial', 16, 'bold')
+bg= '#1300EB'
+lbl13 = Label(ventana, font=fnum,anchor=anc,fg=bg)
+lbl13.place(x=450,y=100,width=wn,height=h)
+lbl7 = Label(ventana, font=fet,anchor=anc)
+lbl7.place(x=500,y=100,width=w,height=h)
 
-lbl8 = Entry(ventana)
-lbl8.place(x=500,y=150,width=100,height=30)
+lbl14 = Label(ventana, font=fnum,anchor=anc,fg=bg)
+lbl14.place(x=450,y=150,width=wn,height=h)
+lbl8 = Label(ventana,font=fet,anchor=anc)
+lbl8.place(x=500,y=150,width=w,height=h)
 
-lbl9 = Entry(ventana)
-lbl9.place(x=500,y=200,width=100,height=30)
+lbl15 = Label(ventana, font=fnum,anchor=anc,fg=bg)
+lbl15.place(x=450,y=200,width=wn,height=h)
+lbl9 = Label(ventana,font=fet,anchor=anc)
+lbl9.place(x=500,y=200,width=w,height=h)
 
-lbl10 = Entry(ventana)
-lbl10.place(x=500,y=250,width=100,height=30)
+lbl16 = Label(ventana, font=fnum,anchor=anc,fg=bg)
+lbl16.place(x=450,y=250,width=wn,height=h)
+lbl10 = Label(ventana, font=fet,anchor=anc)
+lbl10.place(x=500,y=250,width=w,height=h)
 
-lbl11 = Entry(ventana)
-lbl11.place(x=500,y=300,width=100,height=30)
+lbl17 = Label(ventana, font=fnum,anchor=anc,fg=bg)
+lbl17.place(x=450,y=300,width=wn,height=h)
+lbl11 = Label(ventana, font=fet,anchor=anc)
+lbl11.place(x=500,y=300,width=w,height=h)
 
-lbl12 = Entry(ventana)
-lbl12.place(x=500,y=350,width=100,height=30)
-
-
-
-
+lbl18 = Label(ventana, font=fnum,anchor=anc,fg=bg)
+lbl18.place(x=450,y=350,width=wn,height=h)
+lbl12 = Label(ventana, font=fet,anchor=anc)
+lbl12.place(x=500,y=350,width=w,height=h)
 
 #Esto es una prueba
 def Sinonimos():
@@ -85,30 +101,51 @@ def Sinonimos():
     #VARIABLE PARA QUE APAREZCA EL NUMERO A LADO DE LOS SINONIMOS
     j=1
     #PRUEBA PARA QUE VEA COMO QUEDO EL ARREGLOO DE RELACIONES. TAL VEZ PUEDA SERVIR PARA VERIFICAR SI LAS RESPUESTAS FUERON CORRECTAS
-    print(relaciones)
-    for i in range(0,6):
+    #print(relaciones)
+    #for i in range(0,6):
         #SE IMPRIME LAS PALABRAS Y SINONIMOS. LOS SINONIMOS YA SE ENCUENTRAN EN DESORDEN
-        print(palabra[i]+"\t\t",j,sinonimor[i])
-        j=j+1
-        
-    lbl1.insert(0,palabra[0])
-    lbl7.insert(0,sinonimor[0])
+     #   print(palabra[i]+"\t\t",j,sinonimor[i])
+      #  j=j+1
 
-    lbl2.insert(0,palabra[1])
-    lbl8.insert(0,sinonimor[1])
+    wcbx = 50
+    hcbx =30
+    st= 'readonly'
+    val= ['1','2','3','4','5','6']
+    cbx1 = ttk.Combobox(ventana,state=st,values=val,font=fet)
+    cbx1.place(x=330,y=100,width=wcbx,height=hcbx)
+    lbl1.config(text=palabra[0])
+    lbl13.config(text=j)
+    lbl7.config(text=sinonimor[0])
 
-    lbl3.insert(0,palabra[2])
-    lbl9.insert(0,sinonimor[2])
+    cbx2 = ttk.Combobox(ventana,state=st,values=val,font=fet)
+    cbx2.place(x=330,y=150,width=wcbx,height=hcbx)
+    lbl2.config(text=palabra[1])
+    lbl14.config(text=j+1)
+    lbl8.config(text=sinonimor[1])
 
-    lbl4.insert(0,palabra[3])
-    lbl10.insert(0,sinonimor[3])
+    cbx3 = ttk.Combobox(ventana,state=st,values=val,font=fet)
+    cbx3.place(x=330,y=200,width=wcbx,height=hcbx)
+    lbl3.config(text=palabra[2])
+    lbl15.config(text=j+2)
+    lbl9.config(text=sinonimor[2])
 
-    lbl5.insert(0,palabra[4])
-    lbl11.insert(0,sinonimor[4])
+    cbx4 = ttk.Combobox(ventana,state=st,values=val,font=fet)
+    cbx4.place(x=330,y=250,width=wcbx,height=hcbx)
+    lbl4.config(text=palabra[3])
+    lbl16.config(text=j+3)
+    lbl10.config(text=sinonimor[3])
 
-    lbl6.insert(0,palabra[5])
-    lbl12.insert(0,sinonimor[5])
+    cbx5 =ttk.Combobox(ventana,state=st,values=val,font=fet)
+    cbx5.place(x=330,y=300,width=wcbx,height=hcbx)
+    lbl5.config(text=palabra[4])
+    lbl17.config(text=j+4)
+    lbl11.config(text=sinonimor[4])
 
+    cbx6 = ttk.Combobox(ventana,state=st,values=val,font=fet)
+    cbx6.place(x=330,y=350,width=wcbx,height=hcbx)
+    lbl6.config(text=palabra[5])
+    lbl18.config(text=j+5)
+    lbl12.config(text=sinonimor[5])
 
 # DISEÑO
 h1 = Label(ventana, text="Bienvenido a Syno\n ¿Listo para poner a prueba tus habilidades de vocabulario?")
