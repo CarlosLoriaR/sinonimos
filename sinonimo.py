@@ -1,5 +1,7 @@
 from tkinter import *
 from tkinter import ttk
+from functools import partial
+import tkinter as tk
 import requests
 from bs4 import BeautifulSoup
 import sys
@@ -11,80 +13,6 @@ palabras = ['definicion', 'trabajo', 'desarrollo', 'concepto', 'respuesta', 'opc
 sinonimo = []
 relaciones = []
 palabra = random.sample(palabras,6)
-
-wcbx = 50
-hcbx =30
-st= 'readonly'
-val= ['1','2','3','4','5','6']
-
-# VENTANA
-ventana = Tk()
-ventana.geometry("800x600")
-ventana.title("Syno - Juego de Sinonimos")
-
-#COLUMNA IZQUIERDA
-anc = NW
-w=200
-h=30
-fet=('Arial',16)
-lbl1 = Label(ventana,font=fet,anchor=anc)
-lbl1.place(x=200,y=100,width=w,height=h)
-
-lbl2 = Label(ventana, font=fet,anchor=anc)
-lbl2.place(x=200,y=150,width=w,height=h)
-
-lbl3 = Label(ventana, font=fet,anchor=anc)
-lbl3.place(x=200,y=200,width=w,height=h)
-
-lbl4 = Label(ventana, font=fet,anchor=anc)
-lbl4.place(x=200,y=250,width=w,height=h)
-
-lbl5 = Label(ventana, font=fet,anchor=anc)
-lbl5.place(x=200,y=300,width=w,height=h)
-
-lbl6 = Label(ventana, font=fet,anchor=anc)
-lbl6.place(x=200,y=350,width=w,height=h)
-
-#COLUMNA DERECHA
-wn = 50
-fnum =('Arial', 16, 'bold')
-bg= '#1300EB'
-lbl13 = Label(ventana, font=fnum,anchor=anc,fg=bg)
-lbl13.place(x=450,y=100,width=wn,height=h)
-lbl7 = Label(ventana, font=fet,anchor=anc)
-lbl7.place(x=500,y=100,width=w,height=h)
-
-lbl14 = Label(ventana, font=fnum,anchor=anc,fg=bg)
-lbl14.place(x=450,y=150,width=wn,height=h)
-lbl8 = Label(ventana,font=fet,anchor=anc)
-lbl8.place(x=500,y=150,width=w,height=h)
-
-lbl15 = Label(ventana, font=fnum,anchor=anc,fg=bg)
-lbl15.place(x=450,y=200,width=wn,height=h)
-lbl9 = Label(ventana,font=fet,anchor=anc)
-lbl9.place(x=500,y=200,width=w,height=h)
-
-lbl16 = Label(ventana, font=fnum,anchor=anc,fg=bg)
-lbl16.place(x=450,y=250,width=wn,height=h)
-lbl10 = Label(ventana, font=fet,anchor=anc)
-lbl10.place(x=500,y=250,width=w,height=h)
-
-lbl17 = Label(ventana, font=fnum,anchor=anc,fg=bg)
-lbl17.place(x=450,y=300,width=wn,height=h)
-lbl11 = Label(ventana, font=fet,anchor=anc)
-lbl11.place(x=500,y=300,width=w,height=h)
-
-lbl18 = Label(ventana, font=fnum,anchor=anc,fg=bg)
-lbl18.place(x=450,y=350,width=wn,height=h)
-lbl12 = Label(ventana, font=fet,anchor=anc)
-lbl12.place(x=500,y=350,width=w,height=h)
-
-cbx1 = ttk.Combobox(ventana,state=st,values=val,font=fet)
-cbx2 = ttk.Combobox(ventana,state=st,values=val,font=fet)
-cbx3 = ttk.Combobox(ventana,state=st,values=val,font=fet)
-cbx4 = ttk.Combobox(ventana,state=st,values=val,font=fet)
-cbx5 = ttk.Combobox(ventana,state=st,values=val,font=fet)
-cbx6 = ttk.Combobox(ventana,state=st,values=val,font=fet)
 
 url = 'https://www.wordreference.com/sinonimos/'
     #SE ELIGEN 6 ELEMENTOS DEL ARREGLO DE PALABRAS Y SE GUARDAN EN UN ARREGLO LLAMADO PALABRA.
@@ -118,9 +46,101 @@ sinonimor = random.sample(sinonimo,6)
      #   print(palabra[i]+"\t\t",j,sinonimor[i])
       #  j=j+1
 #Esto es una prueba
-def Sinonimos():
-    j=1
 
+def segint(ptj, ventana):
+    print('s')
+    ptj.destroy()
+    ventana.deiconify()
+
+
+def pantpuntaje(puntaje, ventana):
+    ptj = Toplevel()
+    ptj.geometry("800x600+100+30")
+    ptj.title("Syno - Juego de Sinonimos")
+    h1 = Label(ptj, text=(puntaje, '/', '30'),font=('Arial', 25, 'bold'))
+    h1.place(x=200,y=100,width=400,height=30)
+    btnSalir = Button(ptj, text="SALIR", command=exit)
+    btnSalir.place(x=150,y=400,width=200,height=30)
+    if puntaje < 30:
+        btn = Button(ptj, text="VOLVER A INTENTARLO", command=partial(segint, ptj, ventana))
+        btn.place(x=450,y=400,width=200,height=30)
+
+
+def Sinonimos():
+    ventana = Toplevel()
+    ventana.geometry("800x600+100+30")
+    ventana.title("Syno - Juego de Sinonimos")
+    h1 = Label(ventana, text="Bienvenido a Syno\n ¿Listo para poner a prueba tus habilidades de vocabulario?")
+    h1.place(x=200,y=10,width=400,height=30)
+    wcbx = 50
+    hcbx =30
+    st= 'readonly'
+    val= ['1','2','3','4','5','6']
+    #COLUMNA IZQUIERDA
+    anc = NW
+    w=200
+    h=30
+    fet=('Arial',16)
+    lbl1 = Label(ventana,font=fet,anchor=anc)
+    lbl1.place(x=200,y=100,width=w,height=h)
+
+    lbl2 = Label(ventana, font=fet,anchor=anc)
+    lbl2.place(x=200,y=150,width=w,height=h)
+
+    lbl3 = Label(ventana, font=fet,anchor=anc)
+    lbl3.place(x=200,y=200,width=w,height=h)
+
+    lbl4 = Label(ventana, font=fet,anchor=anc)
+    lbl4.place(x=200,y=250,width=w,height=h)
+
+    lbl5 = Label(ventana, font=fet,anchor=anc)
+    lbl5.place(x=200,y=300,width=w,height=h)
+
+    lbl6 = Label(ventana, font=fet,anchor=anc)
+    lbl6.place(x=200,y=350,width=w,height=h)
+
+    #COLUMNA DERECHA
+    wn = 50
+    fnum =('Arial', 16, 'bold')
+    bg= '#1300EB'
+    lbl13 = Label(ventana, font=fnum,anchor=anc,fg=bg)
+    lbl13.place(x=450,y=100,width=wn,height=h)
+    lbl7 = Label(ventana, font=fet,anchor=anc)
+    lbl7.place(x=500,y=100,width=w,height=h)
+
+    lbl14 = Label(ventana, font=fnum,anchor=anc,fg=bg)
+    lbl14.place(x=450,y=150,width=wn,height=h)
+    lbl8 = Label(ventana,font=fet,anchor=anc)
+    lbl8.place(x=500,y=150,width=w,height=h)
+
+    lbl15 = Label(ventana, font=fnum,anchor=anc,fg=bg)
+    lbl15.place(x=450,y=200,width=wn,height=h)
+    lbl9 = Label(ventana,font=fet,anchor=anc)
+    lbl9.place(x=500,y=200,width=w,height=h)
+
+    lbl16 = Label(ventana, font=fnum,anchor=anc,fg=bg)
+    lbl16.place(x=450,y=250,width=wn,height=h)
+    lbl10 = Label(ventana, font=fet,anchor=anc)
+    lbl10.place(x=500,y=250,width=w,height=h)
+
+    lbl17 = Label(ventana, font=fnum,anchor=anc,fg=bg)
+    lbl17.place(x=450,y=300,width=wn,height=h)
+    lbl11 = Label(ventana, font=fet,anchor=anc)
+    lbl11.place(x=500,y=300,width=w,height=h)
+
+    lbl18 = Label(ventana, font=fnum,anchor=anc,fg=bg)
+    lbl18.place(x=450,y=350,width=wn,height=h)
+    lbl12 = Label(ventana, font=fet,anchor=anc)
+    lbl12.place(x=500,y=350,width=w,height=h)
+
+    cbx1 = ttk.Combobox(ventana,state=st,values=val,font=fet)
+    cbx2 = ttk.Combobox(ventana,state=st,values=val,font=fet)
+    cbx3 = ttk.Combobox(ventana,state=st,values=val,font=fet)
+    cbx4 = ttk.Combobox(ventana,state=st,values=val,font=fet)
+    cbx5 = ttk.Combobox(ventana,state=st,values=val,font=fet)
+    cbx6 = ttk.Combobox(ventana,state=st,values=val,font=fet)
+
+    j=1
     cbx1.place(x=330,y=100,width=wcbx,height=hcbx)
     lbl1.config(text=palabra[0])
     lbl13.config(text=j)
@@ -150,74 +170,55 @@ def Sinonimos():
     lbl6.config(text=palabra[5])
     lbl18.config(text=j+5)
     lbl12.config(text=sinonimor[5])
-    # print(relaciones)
 
-def Verificar():
+    btnverificar = Button(ventana, text="Verificar", command=partial(Verificar, cbx1, cbx2, cbx3, cbx4, cbx5, cbx6, ventana))
+    btnverificar.place(x=350,y=400,width=100,height=30)
+    print(relaciones)
+
+def Verificar(cbx1, cbx2, cbx3, cbx4, cbx5, cbx6, ventana):
+    ventana.withdraw()
     puntaje=0
     valor = cbx1.get()
     valorint = int(valor)
     relacion = relaciones[0]
     if palabra[0] == relacion[0] and sinonimor[valorint-1] == relacion[1]:
         puntaje = puntaje + 5
+        cbx1.config(state=DISABLED)
 
     valor = cbx2.get()
     valorint = int(valor)
     relacion = relaciones[1]
     if palabra[1] == relacion[0] and sinonimor[valorint-1] == relacion[1]:
         puntaje = puntaje + 5
+        cbx2.config(state=DISABLED)
 
     valor = cbx3.get()
     valorint = int(valor)
     relacion = relaciones[2]
     if palabra[2] == relacion[0] and sinonimor[valorint-1] == relacion[1]:
         puntaje = puntaje + 5
+        cbx3.config(state=DISABLED)
 
     valor = cbx4.get()
     valorint = int(valor)
     relacion = relaciones[3]
     if palabra[3] == relacion[0] and sinonimor[valorint-1] == relacion[1]:
         puntaje = puntaje + 5
+        cbx4.config(state=DISABLED)
 
     valor = cbx5.get()
     valorint = int(valor)
     relacion = relaciones[4]
     if palabra[4] == relacion[0] and sinonimor[valorint-1] == relacion[1]:
         puntaje = puntaje + 5
+        cbx5.config(state=DISABLED)
 
     valor = cbx6.get()
     valorint = int(valor)
     relacion = relaciones[5]
     if palabra[5] == relacion[0] and sinonimor[valorint-1] == relacion[1]:
         puntaje = puntaje + 5
+        cbx6.config(state=DISABLED)
 
     print(puntaje)
-# DISEÑO
-h1 = Label(ventana, text="Bienvenido a Syno\n ¿Listo para poner a prueba tus habilidades de vocabulario?")
-h1.place(x=200,y=10,width=400,height=30)
-btn = Button(ventana, text="Comenzar", command=Sinonimos)
-btn.place(x=350,y=40,width=100,height=30)
-btnverificar = Button(ventana, text="Verificar", command=Verificar)
-btnverificar.place(x=350,y=500,width=100,height=30)
-
-# REDIRECCIONAR RESULTADOS DE CONSOLA A VENTANA
-# class StdOutRedirect:
-#      def __init__(self,  text: tk.Text) -> None:
-#          self._text = text
-
-#      def write(self,  out: str) -> None:
-#          self._text.insert(tk.END,  out)
-
-
-# class App(tk.Frame):
-#      def __init__(self, parent, *args, **kwargs):
-#          super().__init__(parent,  *args, **kwargs)
-#          self.stdout_text = tk.Text(
-#              self, font=("Helvetica", 15))
-#          self.stdout_text.place(x=10,y=10,width=600,height=100)
-#          sys.stdout = StdOutRedirect(self.stdout_text)
-
-
-# if __name__ == "__main__":
-#      App(ventana).place(x=100,y=100,width=600,height=100)
-
-ventana.mainloop()
+    pantpuntaje(puntaje, ventana)
