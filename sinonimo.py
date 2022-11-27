@@ -8,6 +8,7 @@ import sys
 import tkinter as tk
 import re
 import random
+
 #INICIALIZACIÓN
 palabras = ['definicion', 'trabajo', 'desarrollo', 'concepto', 'respuesta', 'opcion', 'problema', 'apoyo']
 sinonimo = []
@@ -57,8 +58,11 @@ def pantpuntaje(puntaje, ventana):
     ptj = Toplevel()
     ptj.geometry("800x600+100+30")
     ptj.title("Syno - Juego de Sinonimos")
-    h1 = Label(ptj, text=(puntaje, '/', '30'),font=('Arial', 25, 'bold'))
-    h1.place(x=200,y=100,width=400,height=30)
+
+    h1 = Label(ptj, text="TU PUNTUACION ES DE: ",font=('Arial', 40, 'bold'))
+    h1.place(x=100,y=100)
+    lbl_puntaje = Label(ptj, text=(puntaje, '/', '30'),font=('Arial', 40, 'bold'))
+    lbl_puntaje.place(x=320,y=180)
     btnSalir = Button(ptj, text="SALIR", command=exit)
     btnSalir.place(x=150,y=400,width=200,height=30)
     if puntaje < 30:
@@ -68,10 +72,13 @@ def pantpuntaje(puntaje, ventana):
 
 def Sinonimos():
     ventana = Toplevel()
-    ventana.geometry("800x600+100+30")
-    ventana.title("Syno - Juego de Sinonimos")
-    h1 = Label(ventana, text="Bienvenido a Syno\n ¿Listo para poner a prueba tus habilidades de vocabulario?")
-    h1.place(x=200,y=10,width=400,height=30)
+    ventana.geometry("800x500+100+30")
+    ventana.resizable(width=FALSE,height=FALSE)
+    ventana.title("Syno")
+    p = Label(ventana, text="Identifica los sinonimos de las palabras que se encuentran en la derecha de la\nventanay coloca los números en las cajas contenedoras que correspondan",font=("Arial",16),justify="left")
+    p.place(x=20,y=10)
+    lbl_sinonimo = Label(ventana,text="Sinonimo : Que tiene el mismo significado\nque otra u otras palabras o expresiones",fg="red",font=("Arial",16),justify="left")
+    lbl_sinonimo.place(x=20,y=80)
     wcbx = 50
     hcbx =30
     st= 'readonly'
@@ -82,56 +89,56 @@ def Sinonimos():
     h=30
     fet=('Arial',16)
     lbl1 = Label(ventana,font=fet,anchor=anc)
-    lbl1.place(x=200,y=100,width=w,height=h)
+    lbl1.place(x=200,y=150,width=w,height=h)
 
     lbl2 = Label(ventana, font=fet,anchor=anc)
-    lbl2.place(x=200,y=150,width=w,height=h)
+    lbl2.place(x=200,y=200,width=w,height=h)
 
     lbl3 = Label(ventana, font=fet,anchor=anc)
-    lbl3.place(x=200,y=200,width=w,height=h)
+    lbl3.place(x=200,y=250,width=w,height=h)
 
     lbl4 = Label(ventana, font=fet,anchor=anc)
-    lbl4.place(x=200,y=250,width=w,height=h)
+    lbl4.place(x=200,y=300,width=w,height=h)
 
     lbl5 = Label(ventana, font=fet,anchor=anc)
-    lbl5.place(x=200,y=300,width=w,height=h)
+    lbl5.place(x=200,y=350,width=w,height=h)
 
     lbl6 = Label(ventana, font=fet,anchor=anc)
-    lbl6.place(x=200,y=350,width=w,height=h)
+    lbl6.place(x=200,y=400,width=w,height=h)
 
     #COLUMNA DERECHA
     wn = 50
     fnum =('Arial', 16, 'bold')
     bg= '#1300EB'
     lbl13 = Label(ventana, font=fnum,anchor=anc,fg=bg)
-    lbl13.place(x=450,y=100,width=wn,height=h)
+    lbl13.place(x=450,y=150,width=wn,height=h)
     lbl7 = Label(ventana, font=fet,anchor=anc)
-    lbl7.place(x=500,y=100,width=w,height=h)
+    lbl7.place(x=500,y=150,width=w,height=h)
 
     lbl14 = Label(ventana, font=fnum,anchor=anc,fg=bg)
-    lbl14.place(x=450,y=150,width=wn,height=h)
+    lbl14.place(x=450,y=200,width=wn,height=h)
     lbl8 = Label(ventana,font=fet,anchor=anc)
-    lbl8.place(x=500,y=150,width=w,height=h)
+    lbl8.place(x=500,y=200,width=w,height=h)
 
     lbl15 = Label(ventana, font=fnum,anchor=anc,fg=bg)
-    lbl15.place(x=450,y=200,width=wn,height=h)
+    lbl15.place(x=450,y=250,width=wn,height=h)
     lbl9 = Label(ventana,font=fet,anchor=anc)
-    lbl9.place(x=500,y=200,width=w,height=h)
+    lbl9.place(x=500,y=250,width=w,height=h)
 
     lbl16 = Label(ventana, font=fnum,anchor=anc,fg=bg)
-    lbl16.place(x=450,y=250,width=wn,height=h)
+    lbl16.place(x=450,y=300,width=wn,height=h)
     lbl10 = Label(ventana, font=fet,anchor=anc)
-    lbl10.place(x=500,y=250,width=w,height=h)
+    lbl10.place(x=500,y=300,width=w,height=h)
 
     lbl17 = Label(ventana, font=fnum,anchor=anc,fg=bg)
-    lbl17.place(x=450,y=300,width=wn,height=h)
+    lbl17.place(x=450,y=350,width=wn,height=h)
     lbl11 = Label(ventana, font=fet,anchor=anc)
-    lbl11.place(x=500,y=300,width=w,height=h)
+    lbl11.place(x=500,y=350,width=w,height=h)
 
     lbl18 = Label(ventana, font=fnum,anchor=anc,fg=bg)
-    lbl18.place(x=450,y=350,width=wn,height=h)
+    lbl18.place(x=450,y=400,width=wn,height=h)
     lbl12 = Label(ventana, font=fet,anchor=anc)
-    lbl12.place(x=500,y=350,width=w,height=h)
+    lbl12.place(x=500,y=400,width=w,height=h)
 
     cbx1 = ttk.Combobox(ventana,state=st,values=val,font=fet)
     cbx2 = ttk.Combobox(ventana,state=st,values=val,font=fet)
@@ -141,38 +148,40 @@ def Sinonimos():
     cbx6 = ttk.Combobox(ventana,state=st,values=val,font=fet)
 
     j=1
-    cbx1.place(x=330,y=100,width=wcbx,height=hcbx)
+    cbx1.place(x=330,y=150,width=wcbx,height=hcbx)
     lbl1.config(text=palabra[0])
     lbl13.config(text=j)
     lbl7.config(text=sinonimor[0])
 
-    cbx2.place(x=330,y=150,width=wcbx,height=hcbx)
+    cbx2.place(x=330,y=200,width=wcbx,height=hcbx)
     lbl2.config(text=palabra[1])
     lbl14.config(text=j+1)
     lbl8.config(text=sinonimor[1])
 
-    cbx3.place(x=330,y=200,width=wcbx,height=hcbx)
+    cbx3.place(x=330,y=250,width=wcbx,height=hcbx)
     lbl3.config(text=palabra[2])
     lbl15.config(text=j+2)
     lbl9.config(text=sinonimor[2])
 
-    cbx4.place(x=330,y=250,width=wcbx,height=hcbx)
+    cbx4.place(x=330,y=300,width=wcbx,height=hcbx)
     lbl4.config(text=palabra[3])
     lbl16.config(text=j+3)
     lbl10.config(text=sinonimor[3])
 
-    cbx5.place(x=330,y=300,width=wcbx,height=hcbx)
+    cbx5.place(x=330,y=350,width=wcbx,height=hcbx)
     lbl5.config(text=palabra[4])
     lbl17.config(text=j+4)
     lbl11.config(text=sinonimor[4])
 
-    cbx6.place(x=330,y=350,width=wcbx,height=hcbx)
+    cbx6.place(x=330,y=400,width=wcbx,height=hcbx)
     lbl6.config(text=palabra[5])
     lbl18.config(text=j+5)
     lbl12.config(text=sinonimor[5])
 
-    btnverificar = Button(ventana, text="Verificar", command=partial(Verificar, cbx1, cbx2, cbx3, cbx4, cbx5, cbx6, ventana))
-    btnverificar.place(x=350,y=400,width=100,height=30)
+    btnverificar = Button(ventana, text="Evaluar", command=partial(Verificar, cbx1, cbx2, cbx3, cbx4, cbx5, cbx6, ventana),padx=40,bd=3,font=("Arial",16))
+    btnverificar.place(x=330,y=450)
+    lbl_puntuacion = Label(ventana,text="Puntuacion:\nPor cada acierto obtienes 5 puntos",fg="blue",justify='left')
+    lbl_puntuacion.place(x=530,y=450)
     print(relaciones)
 
 def Verificar(cbx1, cbx2, cbx3, cbx4, cbx5, cbx6, ventana):
