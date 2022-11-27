@@ -146,6 +146,7 @@ def Sinonimos():
     lbl6.config(text=palabra[5])
     lbl18.config(text=j+5)
     lbl12.config(text=sinonimor[5])
+    print(relaciones)
 
 # DISEÑO
 h1 = Label(ventana, text="Bienvenido a Syno\n ¿Listo para poner a prueba tus habilidades de vocabulario?")
