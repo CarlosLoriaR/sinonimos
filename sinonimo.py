@@ -13,6 +13,46 @@ palabras = ['definicion', 'trabajo', 'desarrollo', 'concepto', 'respuesta', 'opc
 ventana = Tk()
 ventana.geometry("800x600")
 ventana.title("Syno - Juego de Sinonimos")
+#COLUMNA IZQUIERDA
+lbl1 = Entry(ventana)
+lbl1.place(x=200,y=100,width=100,height=30)
+
+lbl2 = Entry(ventana)
+lbl2.place(x=200,y=150,width=100,height=30)
+
+lbl3 = Entry(ventana)
+lbl3.place(x=200,y=200,width=100,height=30)
+
+lbl4 = Entry(ventana)
+lbl4.place(x=200,y=250,width=100,height=30)
+
+lbl5 = Entry(ventana)
+lbl5.place(x=200,y=300,width=100,height=30)
+
+lbl6 = Entry(ventana)
+lbl6.place(x=200,y=350,width=100,height=30)
+
+#COLUMNA DERECHA
+lbl7 = Entry(ventana)
+lbl7.place(x=500,y=100,width=100,height=30)
+
+lbl8 = Entry(ventana)
+lbl8.place(x=500,y=150,width=100,height=30)
+
+lbl9 = Entry(ventana)
+lbl9.place(x=500,y=200,width=100,height=30)
+
+lbl10 = Entry(ventana)
+lbl10.place(x=500,y=250,width=100,height=30)
+
+lbl11 = Entry(ventana)
+lbl11.place(x=500,y=300,width=100,height=30)
+
+lbl12 = Entry(ventana)
+lbl12.place(x=500,y=350,width=100,height=30)
+
+
+
 
 
 #Esto es una prueba
@@ -50,32 +90,52 @@ def Sinonimos():
         #SE IMPRIME LAS PALABRAS Y SINONIMOS. LOS SINONIMOS YA SE ENCUENTRAN EN DESORDEN
         print(palabra[i]+"\t\t",j,sinonimor[i])
         j=j+1
+        
+    lbl1.insert(0,palabra[0])
+    lbl7.insert(0,sinonimor[0])
+
+    lbl2.insert(0,palabra[1])
+    lbl8.insert(0,sinonimor[1])
+
+    lbl3.insert(0,palabra[2])
+    lbl9.insert(0,sinonimor[2])
+
+    lbl4.insert(0,palabra[3])
+    lbl10.insert(0,sinonimor[3])
+
+    lbl5.insert(0,palabra[4])
+    lbl11.insert(0,sinonimor[4])
+
+    lbl6.insert(0,palabra[5])
+    lbl12.insert(0,sinonimor[5])
+
 
 # DISEÑO
 h1 = Label(ventana, text="Bienvenido a Syno\n ¿Listo para poner a prueba tus habilidades de vocabulario?")
-h1.pack()
-btn = Button(ventana, text="Presionar", command=Sinonimos)
-btn.pack()
+h1.place(x=200,y=10,width=400,height=30)
+btn = Button(ventana, text="Comenzar", command=Sinonimos)
+btn.place(x=350,y=40,width=100,height=30)
+
 
 # REDIRECCIONAR RESULTADOS DE CONSOLA A VENTANA
-class StdOutRedirect:
-    def __init__(self,  text: tk.Text) -> None:
-        self._text = text
+# class StdOutRedirect:
+#      def __init__(self,  text: tk.Text) -> None:
+#          self._text = text
 
-    def write(self,  out: str) -> None:
-        self._text.insert(tk.END,  out)
-
-
-class App(tk.Frame):
-    def __init__(self, parent, *args, **kwargs):
-        super().__init__(parent,  *args, **kwargs)
-        self.stdout_text = tk.Text(
-            self, font=("Helvetica", 15))
-        self.stdout_text.pack(expand=True, fill=tk.BOTH)
-        sys.stdout = StdOutRedirect(self.stdout_text)
+#      def write(self,  out: str) -> None:
+#          self._text.insert(tk.END,  out)
 
 
-if __name__ == "__main__":
-    App(ventana).pack(expand=True, fill=tk.BOTH)
+# class App(tk.Frame):
+#      def __init__(self, parent, *args, **kwargs):
+#          super().__init__(parent,  *args, **kwargs)
+#          self.stdout_text = tk.Text(
+#              self, font=("Helvetica", 15))
+#          self.stdout_text.place(x=10,y=10,width=600,height=100)
+#          sys.stdout = StdOutRedirect(self.stdout_text)
+
+
+# if __name__ == "__main__":
+#      App(ventana).place(x=100,y=100,width=600,height=100)
 
 ventana.mainloop()
