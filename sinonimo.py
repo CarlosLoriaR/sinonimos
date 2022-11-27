@@ -8,15 +8,23 @@ import re
 import random
 #INICIALIZACIÓN
 palabras = ['definicion', 'trabajo', 'desarrollo', 'concepto', 'respuesta', 'opcion', 'problema', 'apoyo']
+sinonimo = []
+relaciones = []
+palabra = random.sample(palabras,6)
 
+wcbx = 50
+hcbx =30
+st= 'readonly'
+val= ['1','2','3','4','5','6']
 
 # VENTANA
 ventana = Tk()
 ventana.geometry("800x600")
 ventana.title("Syno - Juego de Sinonimos")
+
 #COLUMNA IZQUIERDA
 anc = NW
-w=150
+w=200
 h=30
 fet=('Arial',16)
 lbl1 = Label(ventana,font=fet,anchor=anc)
@@ -71,15 +79,19 @@ lbl18.place(x=450,y=350,width=wn,height=h)
 lbl12 = Label(ventana, font=fet,anchor=anc)
 lbl12.place(x=500,y=350,width=w,height=h)
 
-#Esto es una prueba
-def Sinonimos():
-    url = 'https://www.wordreference.com/sinonimos/'
+cbx1 = ttk.Combobox(ventana,state=st,values=val,font=fet)
+cbx2 = ttk.Combobox(ventana,state=st,values=val,font=fet)
+cbx3 = ttk.Combobox(ventana,state=st,values=val,font=fet)
+cbx4 = ttk.Combobox(ventana,state=st,values=val,font=fet)
+cbx5 = ttk.Combobox(ventana,state=st,values=val,font=fet)
+cbx6 = ttk.Combobox(ventana,state=st,values=val,font=fet)
+
+url = 'https://www.wordreference.com/sinonimos/'
     #SE ELIGEN 6 ELEMENTOS DEL ARREGLO DE PALABRAS Y SE GUARDAN EN UN ARREGLO LLAMADO PALABRA.
-    palabra = random.sample(palabras,6) #PALABRA ES UN ARREGLO POR LO QUE SE NECESITA UN CICLO PARA BUSCAR LAS PALABRAS EN LA WEB
-    sinonimo = []
-    relaciones = []
+    # palabra = random.sample(palabras,6) #PALABRA ES UN ARREGLO POR LO QUE SE NECESITA UN CICLO PARA BUSCAR LAS PALABRAS EN LA WEB
+
     #CICLO DE i DESDE QUE ES 0 HASTA QUE ES 6
-    for i in range(0,6):
+for i in range(0,6):
         #SE BUSCA EN INTERNET LA PALABRA DEPENDIENDO DEL INDICE DEL ARREGLO
         buscar = url+palabra[i]
         resp = requests.get(buscar)
@@ -97,63 +109,95 @@ def Sinonimos():
         #EL SINONIMO SELECCIONADO DE CADA PALABRA SE AGREGAR A UN ARREGLO DE SINONIMOS
         sinonimo.append(eleccion)
     #SE TOMAN TODOS LOS SINONIMOS DEL ARREGLOO SINONIMO Y SE REVUELVEN DE MANERA RANDOM
-    sinonimor = random.sample(sinonimo,6)
+sinonimor = random.sample(sinonimo,6)
     #VARIABLE PARA QUE APAREZCA EL NUMERO A LADO DE LOS SINONIMOS
-    j=1
     #PRUEBA PARA QUE VEA COMO QUEDO EL ARREGLOO DE RELACIONES. TAL VEZ PUEDA SERVIR PARA VERIFICAR SI LAS RESPUESTAS FUERON CORRECTAS
     #print(relaciones)
     #for i in range(0,6):
         #SE IMPRIME LAS PALABRAS Y SINONIMOS. LOS SINONIMOS YA SE ENCUENTRAN EN DESORDEN
      #   print(palabra[i]+"\t\t",j,sinonimor[i])
       #  j=j+1
+#Esto es una prueba
+def Sinonimos():
+    j=1
 
-    wcbx = 50
-    hcbx =30
-    st= 'readonly'
-    val= ['1','2','3','4','5','6']
-    cbx1 = ttk.Combobox(ventana,state=st,values=val,font=fet)
     cbx1.place(x=330,y=100,width=wcbx,height=hcbx)
     lbl1.config(text=palabra[0])
     lbl13.config(text=j)
     lbl7.config(text=sinonimor[0])
 
-    cbx2 = ttk.Combobox(ventana,state=st,values=val,font=fet)
     cbx2.place(x=330,y=150,width=wcbx,height=hcbx)
     lbl2.config(text=palabra[1])
     lbl14.config(text=j+1)
     lbl8.config(text=sinonimor[1])
 
-    cbx3 = ttk.Combobox(ventana,state=st,values=val,font=fet)
     cbx3.place(x=330,y=200,width=wcbx,height=hcbx)
     lbl3.config(text=palabra[2])
     lbl15.config(text=j+2)
     lbl9.config(text=sinonimor[2])
 
-    cbx4 = ttk.Combobox(ventana,state=st,values=val,font=fet)
     cbx4.place(x=330,y=250,width=wcbx,height=hcbx)
     lbl4.config(text=palabra[3])
     lbl16.config(text=j+3)
     lbl10.config(text=sinonimor[3])
 
-    cbx5 =ttk.Combobox(ventana,state=st,values=val,font=fet)
     cbx5.place(x=330,y=300,width=wcbx,height=hcbx)
     lbl5.config(text=palabra[4])
     lbl17.config(text=j+4)
     lbl11.config(text=sinonimor[4])
 
-    cbx6 = ttk.Combobox(ventana,state=st,values=val,font=fet)
     cbx6.place(x=330,y=350,width=wcbx,height=hcbx)
     lbl6.config(text=palabra[5])
     lbl18.config(text=j+5)
     lbl12.config(text=sinonimor[5])
-    print(relaciones)
+    # print(relaciones)
 
+def Verificar():
+    puntaje=0
+    valor = cbx1.get()
+    valorint = int(valor)
+    relacion = relaciones[0]
+    if palabra[0] == relacion[0] and sinonimor[valorint-1] == relacion[1]:
+        puntaje = puntaje + 5
+
+    valor = cbx2.get()
+    valorint = int(valor)
+    relacion = relaciones[1]
+    if palabra[1] == relacion[0] and sinonimor[valorint-1] == relacion[1]:
+        puntaje = puntaje + 5
+
+    valor = cbx3.get()
+    valorint = int(valor)
+    relacion = relaciones[2]
+    if palabra[2] == relacion[0] and sinonimor[valorint-1] == relacion[1]:
+        puntaje = puntaje + 5
+
+    valor = cbx4.get()
+    valorint = int(valor)
+    relacion = relaciones[3]
+    if palabra[3] == relacion[0] and sinonimor[valorint-1] == relacion[1]:
+        puntaje = puntaje + 5
+
+    valor = cbx5.get()
+    valorint = int(valor)
+    relacion = relaciones[4]
+    if palabra[4] == relacion[0] and sinonimor[valorint-1] == relacion[1]:
+        puntaje = puntaje + 5
+
+    valor = cbx6.get()
+    valorint = int(valor)
+    relacion = relaciones[5]
+    if palabra[5] == relacion[0] and sinonimor[valorint-1] == relacion[1]:
+        puntaje = puntaje + 5
+
+    print(puntaje)
 # DISEÑO
 h1 = Label(ventana, text="Bienvenido a Syno\n ¿Listo para poner a prueba tus habilidades de vocabulario?")
 h1.place(x=200,y=10,width=400,height=30)
 btn = Button(ventana, text="Comenzar", command=Sinonimos)
 btn.place(x=350,y=40,width=100,height=30)
-
+btnverificar = Button(ventana, text="Verificar", command=Verificar)
+btnverificar.place(x=350,y=500,width=100,height=30)
 
 # REDIRECCIONAR RESULTADOS DE CONSOLA A VENTANA
 # class StdOutRedirect:
