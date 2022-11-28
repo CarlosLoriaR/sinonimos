@@ -56,18 +56,39 @@ def segint(ptj, ventana):
 
 def pantpuntaje(puntaje, ventana):
     ptj = Toplevel()
-    ptj.geometry("800x600+100+30")
+    ptj.geometry("800x500+100+30")
     ptj.title("Syno - Juego de Sinonimos")
+    ptj.resizable(width=FALSE,height=FALSE)
 
     h1 = Label(ptj, text="TU PUNTUACION ES DE: ",font=('Arial', 40, 'bold'))
     h1.place(x=100,y=100)
     lbl_puntaje = Label(ptj, text=(puntaje, '/', '30'),font=('Arial', 40, 'bold'))
     lbl_puntaje.place(x=320,y=180)
-    btnSalir = Button(ptj, text="SALIR", command=exit)
-    btnSalir.place(x=150,y=400,width=200,height=30)
+    btnSalir = Button(ptj, text="SALIR", command=exit,font=('Arial', 16, 'bold'))
+    btnSalir.place(x=340,y=450)
     if puntaje < 30:
-        btn = Button(ptj, text="VOLVER A INTENTARLO", command=partial(segint, ptj, ventana))
-        btn.place(x=450,y=400,width=200,height=30)
+        btn = Button(ptj, text="VOLVER A INTENTARLO", command=partial(segint, ptj, ventana),font=('Arial', 16, 'bold'))
+        btn.place(x=250,y=400,)
+
+    if puntaje == 30:
+        lbl_resultado = Label(ptj, text="ACERTASTE TODO\n¡FELICIDADES!",font=('Arial', 40, 'bold'))
+        lbl_resultado.config(fg="red")
+        lbl_resultado.place(x=130,y=250)
+
+    if puntaje == 20 or puntaje == 25:
+        lbl_resultado = Label(ptj, text="PUEDES MEJORAR\nTODAVIA MÁS",font=('Arial', 40, 'bold'))
+        lbl_resultado.config(fg="red")
+        lbl_resultado.place(x=130,y=250)
+
+    if puntaje == 10 or puntaje == puntaje == 15:
+        lbl_resultado = Label(ptj, text="HACE FALTA PRACTICAR\nEL VOCABULARIO",font=('Arial', 40, 'bold'))
+        lbl_resultado.config(fg="red")
+        lbl_resultado.place(x=90,y=250)
+
+    if puntaje < 10:
+        lbl_resultado = Label(ptj, text="NO TE DESANIMES\nVUELVE A INTENTARLO",font=('Arial', 40, 'bold'))
+        lbl_resultado.config(fg="red")
+        lbl_resultado.place(x=100,y=250)
 
 
 def Sinonimos():
@@ -75,7 +96,7 @@ def Sinonimos():
     ventana.geometry("800x500+100+30")
     ventana.resizable(width=FALSE,height=FALSE)
     ventana.title("Syno")
-    p = Label(ventana, text="Identifica los sinonimos de las palabras que se encuentran en la derecha de la\nventanay coloca los números en las cajas contenedoras que correspondan",font=("Arial",16),justify="left")
+    p = Label(ventana, text="Identifica los sinónimos de las palabras que se encuentran en la derecha de la\nventana y coloca los números en las cajas contenedoras que correspondan",font=("Arial",16),justify="left")
     p.place(x=20,y=10)
     lbl_sinonimo = Label(ventana,text="Sinonimo : Que tiene el mismo significado\nque otra u otras palabras o expresiones",fg="red",font=("Arial",16),justify="left")
     lbl_sinonimo.place(x=20,y=80)

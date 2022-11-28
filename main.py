@@ -10,7 +10,7 @@ main.title("Syno")
 main.resizable(width=FALSE,height=FALSE)
 h1 = Label(main, text="Bienvenidos a SyNo\n",font=("Helvetica",40))
 h1.place(x=120,y=50,width=500,height=120)
-descripcion = Label(main, text="Este es un juego para probar tus habilidades de vocabulario, se te mostraran\ndos listas de palabras y tendrás que relacionar las que sean sinonimos.",font=("Helvetica",16),justify="left")
+descripcion = Label(main, text="Este es un juego para probar tus habilidades de vocabulario, se te mostraran\ndos listas de palabras y tendrás que relacionar las que sean sinónimos.",font=("Helvetica",16),justify="left")
 descripcion.place(x=20,y=130)
 
 ayudanos = Label(main, text="AYUDANOS A EVALUARTE\nAntes de comenzar busca un papel y una hoja para\nllevar tu puntuacion, al final comparala con la nuestra.",font=("Helvetica",16),justify="left")
